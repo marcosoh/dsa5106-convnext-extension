@@ -1,0 +1,49 @@
+[project]
+name = "dsa5106-convnext-extension"
+version = "0.1.0"
+description = "DSA5106 Group Project"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "six>=1.17.0",
+    "tensorboardx>=2.6.4",
+    "timm==0.6.13",
+    "torch>=2.10.0",
+    "torchvision>=0.25.0",
+]
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+line-length = 100
+indent-width = 4
+
+[tool.ruff.lint]
+ignore = ["G004", "ANN401", "FLY002", "TD002", "TD003", "D100", "S101"]
+fixable = ["ALL"]
