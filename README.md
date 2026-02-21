@@ -1,5 +1,6 @@
 # dsa5106-convnext-extension
 
+Setup guidelines to ensure that we have the same environments and code linting (to avoid headache later on :smile:).
 ## Local Setup
 ### Environment and extension
 In your VSCode, if you're developing locally,
@@ -35,30 +36,45 @@ In your VSCode, if you're developing locally,
 Idea: At the initial stages, we can just push our individual file into `tmp_notebook` folder. Then the consolidation team will help to refactor the notebooks into ready-to-use Python scripts. 
 Note: always remember to keep your branch and main branch up-to-date by using git pull!
 
-## Using this repository in Kaggle/Colab notebook
-1. uv setup
-```python
-# 1. Install uv (it's a standalone binary, very fast)
-!curl -LsSf https://astral.sh/uv/install.sh | sh
+## Using this repository in Kaggle notebook
+1. Link your Kaggle notebook with your Github account (Notebook > File > Link to Github). You also need to create a PAT (Personal Access Token) in Github so that you do not need to repeatedly enter your credentials when connecting to Github from Kaggle. Steps:
+- Go to your Github Settings > Developer Settings > Tokens (Classic) > Generate new token (Fine grained, repo-scope) > Set everything up (Permissions needed: Contents (Read only)). 
+- Do not push your changes from Kaggle notebook, so to avoid this mistake, we set the Permissions to just read only. 
+- Copy and save the token.
+- Go to your Kaggle notebook again > Add-ons > Secrets > Add a secret named `GH_TOKEN` and add your github token.
+2. Turn on your internet access in the notebook (Settings > Turn on internet).
+3. Setup
+```
+from kaggle_secrets import UserSecretsClient
 import os
-os.environ["PATH"] += ":" + os.path.expanduser("~/.cargo/bin")
 
-# 2. Clone your project
-!git clone git@github.com:angeladianas/dsa5106-convnext-extension.git
-%cd dsa5106-convnext-extension
+# 1. Get the token safely
+user_secrets = UserSecretsClient()
+token = user_secrets.get_secret("GH_TOKEN")
+repo_name = "dsa5106-convnext-extension"
 
-# 3. Sync the environment using uv
-!uv pip sync uv.lock --system
+# 2. Construct the URL with the token
+repo_url = f"https://angeladianas:{token}@github.com/angeladianas/{repo_name}.git"
 
-# 3. or can use
+# 3. Clone without being asked for a username
+if not os.path.exists(repo_name):
+    print("Cloning private repository...")
+    !git clone {repo_url}
+else:
+    print("Repo already exists. Pulling latest...")
+    %cd {repo_name}
+    !git pull {repo_url} origin main
+
+%cd {repo_name}
+
 !uv pip install -r pyproject.toml --system
 ```
 
-2. If you want to install new libraries
+2. If you want to install new libraries, you can use uv add. Then let Diana knows on what new libraries you need and she'll add it to the `pyproject.toml` and `uv.lock`.
 
 ```python
 # 1. Install the new library and update the lockfile
-!uv add <package> --raw-sources
+!uv add <package>
 
 # 2. Verify the lockfile was updated
 # NOTE: this does not mean you have updated your lockfile in git. You still need to push your changes as per the git workflow.
