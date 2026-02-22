@@ -11,6 +11,7 @@ In your VSCode, if you're developing locally,
 5. If you want to add new libraries, you can do so by adding `uv add <package>`. This will automatically update the lockfile (`uv.lock` and `pyproject.toml`). If you're updating the `pyproject.toml` in your pull requests, add somebody else as the reviewer of the pull request and inform people to update their environment accordingly. This is to prevent environment conflicts. 
 
 ### Further things on Linting
+This is more important for those doing the results consolidation and anyone creating the templates for others to use. This is to ensure that we all have a similar code style.
 1. Create a `.vscode` folder in the project root. 
 2. Create a file `settings.json`. Add this to the file:
 ```json
@@ -35,6 +36,29 @@ In your VSCode, if you're developing locally,
 
 Idea: At the initial stages, we can just push our individual file into `tmp_notebook` folder. Then the consolidation team will help to refactor the notebooks into ready-to-use Python scripts. 
 Note: always remember to keep your branch and main branch up-to-date by using git pull!
+For branching strategies, up to your preference. You can always create a new branch based off main for every changes you created. Or you can create a long-lived branch. 
+
+```bash
+# 1. Go to the main branch
+git checkout main
+
+# 2. Pull changes from main
+git pull origin main
+
+# 3. Create and checkout to a new branch (replace your_branch_name with your desired branch name)
+git checkout -b your_branch_name
+
+# 4. Add changes
+git add xyz.py
+
+# 5. Commit changes, add your commit message
+git commit -m "feat: your commit message"
+
+# 6. Push the changes
+git push origin your_branch_name
+
+# 7. Go to Github and create your pull request
+```
 
 ## Using this repository in Kaggle notebook
 1. Link your Kaggle notebook with your Github account (Notebook > File > Link to Github). You also need to create a PAT (Personal Access Token) in Github so that you do not need to repeatedly enter your credentials when connecting to Github from Kaggle. Steps:
@@ -44,7 +68,7 @@ Note: always remember to keep your branch and main branch up-to-date by using gi
 - Go to your Kaggle notebook again > Add-ons > Secrets > Add a secret named `GH_TOKEN` and add your github token.
 2. Turn on your internet access in the notebook (Settings > Turn on internet).
 3. Setup
-```
+```python
 from kaggle_secrets import UserSecretsClient
 import os
 
