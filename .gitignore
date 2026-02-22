@@ -1,5 +1,18 @@
-.vscode/
-
-.venv
-uv.lock
+# --- Python & Environment ---
+__pycache__/
+*.py[cod]
+*$py.class
 .env
+.venv
+env/
+venv/
+build/
+dist/
+uv.lock
+
+# --- Notebooks & IDEs ---
+.ipynb_checkpoints
+.virtual_documents
+.vscode/
+.idea/
+.DS_Store
