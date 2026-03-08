@@ -9,6 +9,7 @@ venv/
 build/
 dist/
 uv.lock
+*.egg-info*
 
 # --- Notebooks & IDEs ---
 .ipynb_checkpoints
