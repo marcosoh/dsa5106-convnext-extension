@@ -9,6 +9,7 @@ In your VSCode, if you're developing locally,
 3. Some basic libraries and dependencies have been added to `pyproject.toml` and locked under `uv.lock`. You can start a new virtual environment by typing `uv venv` in the project root and then activate that virtual environment (typically by doing `source ~/<your_path_to_this_folder>/.venv/bin/activate`). Tips: to automatically select the venv everytime you open this project, open the command palate (Cmd + Shift + p) > Python: Select Interpreter > Enter interpreter path... > put `.venv/bin/activate` as the path > Enter. Open a new terminal window in VSCode, then you should be in your venv already (one easy way to verify is to run `which python3`, it should point to the python3 version in your venv path).
 4. Start syncing the dependencies by using `uv sync`.
 5. If you want to add new libraries, you can do so by adding `uv add <package>`. This will automatically update the lockfile (`uv.lock` and `pyproject.toml`). If you're updating the `pyproject.toml` in your pull requests, add somebody else as the reviewer of the pull request and inform people to update their environment accordingly. This is to prevent environment conflicts. 
+6. Run this at project root so that you can import `utils/` from other folders in this repository: `uv pip install -e .`.
 
 ### Further things on Linting
 This is more important for those doing the results consolidation and anyone creating the templates for others to use. This is to ensure that we all have a similar code style.
