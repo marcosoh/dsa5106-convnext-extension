@@ -16,4 +16,6 @@ uv.lock
 .virtual_documents
 .vscode/
 .idea/
+.DS_Store*.zip
 .DS_Store
+*.zip
