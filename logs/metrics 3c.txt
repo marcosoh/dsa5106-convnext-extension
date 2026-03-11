@@ -1,0 +1,3 @@
+Model: swin_tiny_patch4_window7_224
+Accuracy: 0.6962593516209477
+Macro F1: 0.2280011852923088
