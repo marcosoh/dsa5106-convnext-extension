@@ -21,15 +21,44 @@ Ashley Lim Zhi Yan, Chen Yao Quan, Diana, Marco, Poh Yu Jie, Tan Yi Kai, Zhang J
 
 **Repository Structure**
 ```
-
+DSA5106-CONVNEXT-EXTENSION
+├── logs/                          # Training and experiment logs
+├── notebook/                      # Research and experiment notebooks
+│   ├── extension-1a-convnext-baseline.ipynb
+│   ├── extension-1b-geometric-augmentation.ipynb
+│   ├── extension-1c-mixture-augmentation.ipynb
+│   ├── extension-1d-full-recipe.ipynb
+│   ├── extension-2a-batchnorm.ipynb
+│   ├── extension-2b-relu.ipynb
+│   ├── extension-2c-1x1conv.ipynb
+│   ├── extension-3a-confusion-matrix.ipynb
+│   ├── extension-3a-convnext-tiny.ipynb
+│   ├── extension-3b-resnet50.ipynb
+│   ├── extension-3bcd-confusion-matrix.ipynb
+│   ├── extension-3c-swintiny-default.ipynb
+│   └── extension-3d-swintiny-optimised.ipynb
+├── results/                       # Output artifacts
+│   ├── images/                    # Generated plots and figures
+│   ├── __init__.py
+│   └── results_from_logs.ipynb    # Parsed logs
+├── tmp_notebook/                  # Temporary or scratchpad notebooks
+├── utils/                         # Utility scripts and helper functions
+│   ├── __init__.py
+│   └── logs_parser.py
+├── .gitignore                     # Git ignore file
+├── LICENSE                        # Project license
+├── README.md                      # Project documentation
+├── __init__.py
+├── pyproject.toml                 # Project metadata and dependencies
+└── uv.lock                        # UV package manager lockfile
 ```
 
----
 ## Development Guide
 Setup guidelines to ensure that we have the same environment and code linting.
 
-### Local Setup
-#### Environment and extension
+### 1. Local Setup
+---
+#### a. Environment and extension
 In your VSCode, if you're developing locally,
 1. Install `ruff` extension, this helps linting your Python code.
 2. Install `uv` (can use brew or any other method you prefer), we'll use this to manage our environments instead of pip (both in VSCode and in Kaggle Notebook).
@@ -38,7 +67,7 @@ In your VSCode, if you're developing locally,
 5. If you want to add new libraries, you can do so by adding `uv add <package>`. This will automatically update the lockfile (`uv.lock` and `pyproject.toml`). If you're updating the `pyproject.toml` in your pull requests, add somebody else as the reviewer of the pull request and inform people to update their environment accordingly. This is to prevent environment conflicts. 
 6. Run this at project root so that you can import `utils/` from other folders in this repository: `uv pip install -e .`.
 
-#### Further things on Linting
+#### b. Further things on Linting
 This is more important for those doing the results consolidation and anyone creating the templates for others to use. This is to ensure that we all have a similar code style.
 1. Create a `.vscode` folder in the project root. 
 2. Create a file `settings.json`. Add this to the file:
@@ -56,7 +85,8 @@ This is more important for those doing the results consolidation and anyone crea
 }
 ```
 
-### Git workflow
+### 2. Git workflow
+---
 1. Create a new branch, based off the main branch.
 2. Add, commit, and push your changes to that branch.
 3. Create a pull request.
@@ -88,7 +118,8 @@ git push origin your_branch_name
 # 7. Go to Github and create your pull request
 ```
 
-### Using this repository in Kaggle notebook
+### 3. Using this repository in Kaggle notebook
+---
 1. Link your Kaggle notebook with your Github account (Notebook > File > Link to Github). You also need to create a PAT (Personal Access Token) in Github so that you do not need to repeatedly enter your credentials when connecting to Github from Kaggle. Steps:
 - Go to your Github Settings > Developer Settings > Tokens (Classic) > Generate new token (Fine grained, repo-scope) > Set everything up (Permissions needed: Contents (Read only)). 
 - Do not push your changes from Kaggle notebook, so to avoid this mistake, we set the Permissions to just read only. 
@@ -132,3 +163,7 @@ else:
 # NOTE: this does not mean you have updated your lockfile in git. You still need to push your changes as per the git workflow.
 !ls -l uv.lock
 ```
+
+## Disclaimer
+---
+AI is used in generating docstring, enhancing the sentences, and other formatting. 
